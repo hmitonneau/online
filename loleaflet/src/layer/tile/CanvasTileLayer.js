@@ -3,7 +3,7 @@
  * L.CanvasTileLayer is a L.TileLayer with canvas based rendering.
  */
 
-/* global L CanvasSectionContainer */
+/* global L CanvasSectionContainer CanvasOverlay */
 
 L.TileCoordData = L.Class.extend({
 
@@ -254,6 +254,30 @@ L.TileSectionManager = L.Class.extend({
 			},
 			onDraw: that._onDrawGridSection
 		}, 'tiles'); // Its size and position will be copied from 'tiles' section.
+	},
+
+	_addOverlaySection: function () {
+		var tsMgr = this;
+		var canvasOverlay = this._layer._canvasOverlay = new CanvasOverlay(this._map, this._sectionContainer.getContext());
+		this._sectionContainer.createSection({
+			name: 'overlay',
+			anchor: 'top left',
+			position: [0, 0],
+			size: [0, 0],
+			expand: 'top left bottom right', // Expand to all directions.
+			processingOrder: 5,
+			drawingOrder: 7,
+			zIndex: 5,
+			interactable: true,
+			sectionProperties: {
+				docLayer: tsMgr._layer,
+				tsManager: tsMgr
+			},
+			onInitialize: canvasOverlay.onInitialize.bind(canvasOverlay),
+			onResize: canvasOverlay.onResize.bind(canvasOverlay), // will call onDraw.
+			onDraw: canvasOverlay.onDraw.bind(canvasOverlay)
+		});
+		this._overlaySection = this._sectionContainer.getSectionWithName('overlay');
 	},
 
 	_onDrawGridSection: function () {
@@ -550,6 +574,7 @@ L.CanvasTileLayer = L.TileLayer.extend({
 		this._painter = new L.TileSectionManager(this);
 		this._painter._addTilesSection();
 		this._painter._sectionContainer.getSectionWithName('tiles').onResize();
+		this._painter._addOverlaySection();
 
 		// For mobile/tablet the hammerjs swipe handler already uses a requestAnimationFrame to fire move/drag events
 		// Using L.TileSectionManager's own requestAnimationFrame loop to do the updates in that case does not perform well.

@@ -27,10 +27,13 @@ $(L10N_IOS_ALL_JS) : $(wildcard $(srcdir)/po/ui-*.po) $(shell find $(srcdir)/l10
 	done
 endif
 
-SRC_TS = $(wildcard src/layer/tile/*.ts)
-SRC_TS_JS = $(patsubst src/layer/tile/%.ts,src/layer/tile/%.js,$(SRC_TS))
+SRC_TS = $(wildcard src/layer/tile/*.ts) $(wildcard src/layer/vector/*.ts)
+SRC_TS_JS = $(patsubst src/layer/tile/%.ts,src/layer/tile/%.js,$(SRC_TS)) $(patsubst src/layer/vector/%.ts,src/layer/vector/%.js,$(SRC_TS))
 
 src/layer/tile/%.js: src/layer/tile/%.ts
+	$(srcdir)/node_modules/typescript/bin/tsc $< --outfile $@ --module none --lib dom,es2016 --target ES5
+
+src/layer/vector/%.js: src/layer/vector/%.ts
 	$(srcdir)/node_modules/typescript/bin/tsc $< --outfile $@ --module none --lib dom,es2016 --target ES5
 
 JQUERY_LIGHTNESS_IMAGE_PATH = $(srcdir)/images/jquery-ui-lightness
@@ -206,6 +209,7 @@ LOLEAFLET_JS =\
 	src/map/Clipboard.js \
 	src/layer/Layer.js \
 	src/layer/tile/CanvasSectionContainer.js \
+	src/layer/vector/CanvasOverlay.js \
 	src/layer/tile/GridLayer.js \
 	src/layer/tile/TileLayer.js \
 	src/layer/tile/CanvasTileLayer.js \
