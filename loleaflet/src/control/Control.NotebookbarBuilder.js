@@ -166,6 +166,13 @@ L.Control.NotebookbarBuilder = L.Control.JSDialogBuilder.extend({
 		this._toolitemHandlers['.uno:BezierSmooth'] = function() {};
 		this._toolitemHandlers['.uno:GlueEditMode'] = function() {};
 
+		/*Writer: Draw Tab*/
+		this._toolitemHandlers['.uno:GraphicDialog'] = function() {};
+		this._toolitemHandlers['.uno:SaveGraphic'] = function() {};
+		this._toolitemHandlers['.uno:GraphicFilterToolbox'] = function() {};
+		this._toolitemHandlers['.uno:Crop'] = function() {};
+		this._toolitemHandlers['.uno:CompressGraphic'] = function() {};
+
 		/*Calc: Data Tab*/
 		this._toolitemHandlers['.uno:DataProvider'] = function() {};
 		this._toolitemHandlers['.uno:ManageXMLSource'] = function() {};
