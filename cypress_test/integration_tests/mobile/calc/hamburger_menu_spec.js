@@ -514,7 +514,7 @@ describe('Trigger hamburger menu options.', function() {
 		// Use columns header height as indicator
 		helper.initAliasToNegative('origHeaderHeight');
 
-		cy.get('.spreadsheet-header-columns')
+		cy.get('[id="test-div-column header"]')
 			.invoke('height')
 			.as('origHeaderHeight');
 
@@ -528,9 +528,9 @@ describe('Trigger hamburger menu options.', function() {
 
 		cy.get('@origHeaderHeight')
 			.then(function(origHeaderHeight) {
-				cy.get('.spreadsheet-header-columns')
+				cy.get('[id="test-div-column header"]')
 					.should(function(header) {
-						expect(header.height()).to.be.greaterThan(origHeaderHeight);
+						expect(header.height()).to.be.equal(origHeaderHeight);
 					});
 			});
 
@@ -539,7 +539,7 @@ describe('Trigger hamburger menu options.', function() {
 
 		cy.get('@origHeaderHeight')
 			.then(function(origHeaderHeight) {
-				cy.get('.spreadsheet-header-columns')
+				cy.get('[id="test-div-column header"]')
 					.should(function(header) {
 						expect(header.height()).to.be.at.most(origHeaderHeight);
 					});
@@ -552,7 +552,7 @@ describe('Trigger hamburger menu options.', function() {
 		// Use columns header height as indicator
 		helper.initAliasToNegative('origHeaderHeight');
 
-		cy.get('.spreadsheet-header-columns')
+		cy.get('[id="test-div-column header"]')
 			.invoke('height')
 			.as('origHeaderHeight');
 
@@ -566,9 +566,9 @@ describe('Trigger hamburger menu options.', function() {
 
 		cy.get('@origHeaderHeight')
 			.then(function(origHeaderHeight) {
-				cy.get('.spreadsheet-header-columns')
+				cy.get('[id="test-div-column header"]')
 					.should(function(header) {
-						expect(header.height()).to.be.greaterThan(origHeaderHeight);
+						expect(header.height()).to.be.equal(origHeaderHeight);
 					});
 			});
 
@@ -577,7 +577,7 @@ describe('Trigger hamburger menu options.', function() {
 
 		cy.get('@origHeaderHeight')
 			.then(function(origHeaderHeight) {
-				cy.get('.spreadsheet-header-columns')
+				cy.get('[id="test-div-column header"]')
 					.should(function(header) {
 						expect(header.height()).to.be.at.most(origHeaderHeight);
 					});
@@ -590,7 +590,7 @@ describe('Trigger hamburger menu options.', function() {
 		// Use columns header height as indicator
 		helper.initAliasToNegative('origHeaderHeight');
 
-		cy.get('.spreadsheet-header-columns')
+		cy.get('[id="test-div-column header"]')
 			.invoke('height')
 			.as('origHeaderHeight');
 
@@ -604,9 +604,9 @@ describe('Trigger hamburger menu options.', function() {
 
 		cy.get('@origHeaderHeight')
 			.then(function(origHeaderHeight) {
-				cy.get('.spreadsheet-header-columns')
+				cy.get('[id="test-div-column header"]')
 					.should(function(header) {
-						expect(header.height()).to.be.greaterThan(origHeaderHeight);
+						expect(header.height()).to.be.equal(origHeaderHeight);
 					});
 			});
 
