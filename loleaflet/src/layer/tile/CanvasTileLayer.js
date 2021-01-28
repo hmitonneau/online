@@ -3,7 +3,7 @@
  * L.CanvasTileLayer is a L.TileLayer with canvas based rendering.
  */
 
-/* global L CanvasSectionContainer CanvasOverlay */
+/* global L CanvasSectionContainer CanvasOverlay CPoint CPointSet CPolyline */
 
 L.TileCoordData = L.Class.extend({
 
@@ -600,6 +600,11 @@ L.CanvasTileLayer = L.TileLayer.extend({
 			this._painter._addGridSection();
 		}
 		this._syncTileContainerSize();
+
+		// DEBUG: Polyline Test code
+		var pl = new CPolyline(CPointSet.fromPointArray([new CPoint(10, 10), new CPoint(350, 350)]), {color: 'red'});
+		this._canvasOverlay.initPath(pl);
+
 	},
 
 	_syncTilePanePos: function () {
