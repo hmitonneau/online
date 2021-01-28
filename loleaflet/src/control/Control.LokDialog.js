@@ -765,10 +765,14 @@ L.Control.LokDialog = L.Control.extend({
 		}
 
 		var newHeight = height * scale;
+		// console.log('newHeight = height * scale: ' + newHeight + ' = ' + height + ' * ' + scale);
+		// console.log('if (canvas.height != newHeight) : if(' + canvas.height + ' != ' + newHeight + ')');
+		// console.debug(canvas);
 		if (canvas.height != newHeight) {
 			L.DomUtil.setStyle(canvas, 'height', height + 'px');
 			canvas.height = newHeight;
 		}
+		//console.debug(canvas);
 	},
 
 	_launchDialog: function(id, leftTwips, topTwips, width, height, title) {
@@ -1110,6 +1114,7 @@ L.Control.LokDialog = L.Control.extend({
 
 		var panelContainer = L.DomUtil.create('div', 'panel', L.DomUtil.get('sidebar-panel'));
 		panelContainer.id = strId;
+		this._setCanvasWidthHeight(panelContainer, width, height);
 
 		// Create the panel canvas.
 		var panelCanvas = L.DomUtil.create('canvas', 'panel_canvas', panelContainer);
