@@ -253,6 +253,7 @@ L.Control.MobileWizardBuilder = L.Control.JSDialogBuilder.extend({
 	_fontworkShapeControl: function(parentContainer, data, builder) {
 		var json = [
 			{
+				id: 'fontworkproperties',
 				type: 'frame',
 				children: [
 					{
